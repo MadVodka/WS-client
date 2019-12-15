@@ -137,4 +137,13 @@ public class CarSpecification {
         this.yearMade = value;
     }
 
+    @Override
+    public String toString() {
+        return "CarSpecification{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", yearMade=" + yearMade +
+                '}';
+    }
 }

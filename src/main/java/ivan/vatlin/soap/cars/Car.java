@@ -159,4 +159,14 @@ public class Car {
         this.carStatus = value;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", carSpecification=" + carSpecification +
+                ", pricePerDay=" + pricePerDay +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", carStatus=" + carStatus +
+                '}';
+    }
 }

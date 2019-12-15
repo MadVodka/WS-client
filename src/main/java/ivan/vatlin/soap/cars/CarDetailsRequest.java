@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -31,27 +31,23 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "search",
-    "all"
+        "search",
+        "all"
 })
-@XmlRootElement(name = "CarDetailsRequest")
+@XmlRootElement(name = "CarDetailsRequest", namespace = "https://www.ivan.vatlin/cars")
 public class CarDetailsRequest {
 
     protected Search search;
-    protected String all;
+    protected String all = "";
 
     /**
      * Gets the value of the search property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Search }
-     *     
+     *
+     * @return possible object is
+     * {@link Search }
      */
     public Search getSearch() {
         return search;
@@ -59,11 +55,9 @@ public class CarDetailsRequest {
 
     /**
      * Sets the value of the search property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Search }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Search }
      */
     public void setSearch(Search value) {
         this.search = value;
@@ -71,11 +65,9 @@ public class CarDetailsRequest {
 
     /**
      * Gets the value of the all property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAll() {
         return all;
@@ -83,11 +75,9 @@ public class CarDetailsRequest {
 
     /**
      * Sets the value of the all property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAll(String value) {
         this.all = value;
