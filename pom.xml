@@ -27,24 +27,28 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.6</version>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.14.0</version>
                 <executions>
                     <execution>
-                        <phase>none</phase>
-                        <id>xjc</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
-                    <schemaFiles>car_specification.xsd</schemaFiles>
-                    <outputDirectory>${project.basedir}/src/main/java/ivan/vatlin/soap/car_specification
-                    </outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>ivan.vatlin.soap.cars</generatePackage>
+                    <schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+                    <schemaIncludes>
+                        <include>*.wsdl</include>
+                    </schemaIncludes>
+<!--                    <schemas>-->
+<!--                        <schema>-->
+<!--                            <url>http://localhost:8080/soap/cars.wsdl</url>-->
+<!--                        </schema>-->
+<!--                    </schemas>-->
                 </configuration>
             </plugin>
         </plugins>

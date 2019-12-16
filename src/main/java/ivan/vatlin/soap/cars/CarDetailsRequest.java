@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
         "search",
         "all"
 })
-@XmlRootElement(name = "CarDetailsRequest", namespace = "https://www.ivan.vatlin/cars")
+@XmlRootElement(name = "CarDetailsRequest")
 public class CarDetailsRequest {
 
     protected Search search;

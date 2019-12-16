@@ -10,7 +10,7 @@ public class AppConfig {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("ivan.vatlin.soap.cars");
+        marshaller.setPackagesToScan("ivan.vatlin.soap.cars", "ivan.vatlin.soap.car_specification");
         return marshaller;
     }
 

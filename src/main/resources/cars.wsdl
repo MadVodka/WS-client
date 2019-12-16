@@ -1,0 +1,124 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="https://www.ivan.vatlin/cars" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://www.ivan.vatlin/cars" targetNamespace="https://www.ivan.vatlin/cars">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://www.ivan.vatlin/cars">
+            <xs:element name="CarDetailsRequest">
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element ref="tns:search"/>
+                        <xs:element fixed="" name="all" type="xs:string"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CarDetailsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="cars" type="tns:Car"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CarCreateRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="car" type="tns:Car"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CarCreateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="result" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="search">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="by" type="tns:searchBy" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:simpleType name="searchBy">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="brand"/>
+                    <xs:enumeration value="model"/>
+                    <xs:enumeration value="yearMade"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Car">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="carSpecification" type="tns:carSpecification"/>
+                    <xs:element name="pricePerDay" type="xs:double"/>
+                    <xs:element name="registrationNumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="carStatus" type="tns:carStatus"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="carSpecification">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="brand" type="xs:string"/>
+                    <xs:element minOccurs="0" name="model" type="xs:string"/>
+                    <xs:element minOccurs="0" name="yearMade" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="carStatus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="IDLE"/>
+                    <xs:enumeration value="IN_USE"/>
+                    <xs:enumeration value="IN_MAINTAINANCE"/>
+                    <xs:enumeration value="WRITTEN_OFF"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="CarDetailsResponse">
+        <wsdl:part element="tns:CarDetailsResponse" name="CarDetailsResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CarCreateRequest">
+        <wsdl:part element="tns:CarCreateRequest" name="CarCreateRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CarCreateResponse">
+        <wsdl:part element="tns:CarCreateResponse" name="CarCreateResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CarDetailsRequest">
+        <wsdl:part element="tns:CarDetailsRequest" name="CarDetailsRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CarDetailsPort">
+        <wsdl:operation name="CarDetails">
+            <wsdl:input message="tns:CarDetailsRequest" name="CarDetailsRequest"> </wsdl:input>
+            <wsdl:output message="tns:CarDetailsResponse" name="CarDetailsResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CarCreate">
+            <wsdl:input message="tns:CarCreateRequest" name="CarCreateRequest"> </wsdl:input>
+            <wsdl:output message="tns:CarCreateResponse" name="CarCreateResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CarDetailsPortSoap11" type="tns:CarDetailsPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CarDetails">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="CarDetailsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="CarDetailsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CarCreate">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="CarCreateRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="CarCreateResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CarDetailsPortService">
+        <wsdl:port binding="tns:CarDetailsPortSoap11" name="CarDetailsPortSoap11">
+            <soap:address location="http://localhost:8080/soap"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

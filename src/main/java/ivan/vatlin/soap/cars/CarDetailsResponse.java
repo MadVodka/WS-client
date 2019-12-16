@@ -37,7 +37,7 @@ import java.util.List;
 @XmlType(name = "", propOrder = {
         "cars"
 })
-@XmlRootElement(name = "CarDetailsResponse", namespace = "https://www.ivan.vatlin/cars")
+@XmlRootElement(name = "CarDetailsResponse")
 public class CarDetailsResponse {
 
     protected List<Car> cars;
